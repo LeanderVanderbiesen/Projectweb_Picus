@@ -1,0 +1,1 @@
+curl "https://api.particle.io/v1/devices/300040001647373335333438/analogvalue?access_token=26f5ece9c3b848b36f9bbed29fb2b1578f744bab"
