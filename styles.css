@@ -1,0 +1,100 @@
+html{
+    height: 100%;
+}
+body
+{
+    font-family: 'Livvic', sans-serif;
+    font-size: 28px;
+    min-height: 100%;
+}
+header{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.footer-img{
+    width: 100px;
+    height: 100px;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+hr{
+    border-top: 1px solid lightgray;
+    border-bottom: 3px solid lightgray;
+}
+a{
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+.back-btn{
+    width: 80px;
+    height: 80px;
+}
+.color-green{
+    color: #24A284;
+}
+.plant-img{
+    height: 500px;
+    width: 350px;
+}
+.plant{
+    text-align: center;
+}
+.plant-status{
+    margin-top: -80px;
+    color: #ababab;
+}
+.plant-info{
+    text-align: center;
+    margin-top: 80px;
+}
+.plant-tip{
+    margin-top: 80px;
+    text-align: center;
+}
+/*
+INDEX
+ */
+.header-right{
+    text-align: right;
+}
+.header-index{
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.plant-card{
+    border-style: solid;
+    border-color: lightgray;
+    margin-bottom: 50px;
+    border-radius: 70px;
+}
+.plant-info-mid{
+    text-align: center;
+}
+
+.active{
+    color: #24A284;
+}
+
+/*
+Add plant
+ */
+
+.header-add{
+    text-align: center;
+}
+.btn-connect{
+    background-color: #fff;
+   border: 0.8px solid #24A284;
+    padding: 14px 28px;
+    border-radius: 30px;
+    margin-top: 30px;
+}
+.connect-info{
+    text-align: center;
+}
