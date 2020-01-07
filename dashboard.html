@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link rel="" href="syncData.php">
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <style>
-
-    </style>
+    <script>
+        window.onload = function syncData() {
+            $.ajax({
+                method: "POST",
+                url: 'syncData.php',
+                data:{action:'call_this'},
+                success:function(data) {
+                    localStorage.setItem('moisture', data + '%');
+                    document.getElementById('moisture-level').innerHTML = localStorage.getItem('moisture');
+                }
+            });
+        };
+    </script>
 </head>
 <body>
     <header>
@@ -21,7 +33,7 @@
                     <h1>Dashboard Marcel</h1>
                 </div>
                 <div class="col-sm-2">
-                    <a href="">Sync</a>
+                        <a onclick="syncData()" id="sync" name="sync" href="">Sync</a>
                 </div>
             </div>
         </div>
@@ -48,10 +60,10 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <p>Humidity:</p>
+                <p>Moisture level:</p>
             </div>
             <div class="col-sm-6">
-                <p>24%</p>
+                <p id="moisture-level"></p>
             </div>
         </div>
         <div class="row">
@@ -91,4 +103,20 @@
         </div>
     </footer>
 </body>
+<script>
+    document.getElementById('moisture-level').innerHTML = localStorage.getItem('moisture');
+
+
+    function syncData() {
+        $.ajax({
+            method: "POST",
+            url: 'syncData.php',
+            data:{action:'call_this'},
+            success:function(data) {
+                localStorage.setItem('moisture', data + '%');
+                document.getElementById('moisture-level').innerHTML = localStorage.getItem('moisture');
+            }
+        });
+    }
+</script>
 </html>
