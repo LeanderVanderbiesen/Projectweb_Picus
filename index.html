@@ -5,20 +5,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="styles.css">
-	<link rel="" href="syncData.php">
-	<script>
-		window.onload = function syncData() {
-			$.ajax({
-				method: "POST",
-				url: 'syncData.php',
-				data:{action:'call_this'},
-				success:function(data) {
-					localStorage.setItem('moisture', data);
-					document.getElementById('moisture-level').innerHTML = localStorage.getItem('moisture');
-				}
-			});
-		};
-	</script>
     <title>Picus</title>
 </head>
 <body>
@@ -33,7 +19,7 @@
 					<h1 class="top-header color-green">Your plants</h1>
 				</div>
 				<div class="col-sm-4 header-right">
-					<a href="" onclick="syncData()" class="sync">Sync</a>
+					<a href="" class="sync">Sync</a>
 				</div>
 			</div>
 		</div>
@@ -53,7 +39,7 @@
 					</div>
 					<div class="col-md-4 plant-info-right">
 						<svg xmlns="http://www.w3.org/2000/svg" class="plant-info-img" data-name="Layer 1" viewBox="0 0 64 80" x="0px" y="0px"><title>Weather-icons</title><path d="M32.44,13.83a2,2,0,0,0-3.5,1.35c.14,6.61-2.65,10.23-5.34,13.72-2.18,2.84-4.25,5.52-4.25,9.31a12.65,12.65,0,0,0,25.3,0C44.65,29,38.12,20.32,32.44,13.83Zm.08,6.31c3.33,4.2,6.44,9,7.62,14a5,5,0,0,1-2.86,1.75,4.36,4.36,0,0,1-3.36-1.49,9,9,0,0,0-6.76-2.76c-.23,0-.45,0-.66.07l.27-.36C28.94,28.53,31.51,25.18,32.52,20.14ZM32,46.86a8.66,8.66,0,0,1-8.65-8.65c0-.11,0-.21,0-.32a2,2,0,0,0,.53-.43,5.73,5.73,0,0,1,3.52-1.84,5.14,5.14,0,0,1,3.75,1.69A8.43,8.43,0,0,0,37,39.9a7.86,7.86,0,0,0,.83,0,7.36,7.36,0,0,0,2.83-1A8.65,8.65,0,0,1,32,46.86Z"/></svg>
-						<span id="moisture-level"></span>
+						<span>39%</span>
 					</div>
 				</div>
 			</a>
@@ -118,18 +104,19 @@
 </main>
 </body>
 </html>
-<script>
-	document.getElementById('moisture-level').innerHTML = localStorage.getItem('moisture');
-	function syncData() {
-		$.ajax({
-			method: "POST",
-			url: 'syncData.php',
-			data:{action:'call_this'},
-			success:function(data) {
-				localStorage.setItem('moisture', data);
-				document.getElementById('moisture-level').innerHTML = localStorage.getItem('moisture');
-			}
-		});
-	}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/particle-api-js@8/dist/particle.min.js">
+    particle.login({username: 'janmoorkens@yahoo.com', password: 'Moorkens2323'}).then(
+        function(data){
+            console.log('API call completed on promise resolve: ', data.body.access_token);
+        },
+        function(err) {
+            console.log('API call completed on promise fail: ', err);
+        }
+    );
+    particle.getEventStream({ deviceId: 'picus', auth: '26f5ece9c3b848b36f9bbed29fb2b1578f744bab' }).then(function(stream) {
+        stream.on('event', function(data) {
+            console.log("Event: ", data);
+        });
+    });
 </script>
 
